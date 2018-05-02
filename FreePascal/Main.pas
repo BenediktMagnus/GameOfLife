@@ -14,17 +14,25 @@ uses
 type
   { TMainForm }
   TMainForm = class(TForm)
+    Button_StartStop: TButton;
     Button_Set: TButton;
+    Label_Interval: TLabel;
+    Label_Interval_ms: TLabel;
     PaintBox: TPaintBox;
     PanelConfig: TPanel;
     Edit_X: TSpinEdit;
     Edit_Y: TSpinEdit;
     Label_X: TLabel;
     Label_Y: TLabel;
+    Edit_Interval: TSpinEdit;
+    Timer_Game: TTimer;
     procedure Button_SetClick(Sender: TObject);
+    procedure Button_StartStopClick(Sender: TObject);
+    procedure Edit_IntervalChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure PaintBoxMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure PaintBoxPaint(Sender: TObject);
+    procedure Timer_GameTimer(Sender: TObject);
   end;
 
 var
@@ -95,6 +103,26 @@ begin
   Grid.SetSize(Rows, Cols);
 
   PaintBox.Invalidate;
+end;
+
+procedure TMainForm.Button_StartStopClick(Sender: TObject);
+begin
+  Timer_Game.Enabled := not Timer_Game.Enabled;
+
+  case Timer_Game.Enabled of
+    true: Button_StartStop.Caption := 'Stop';
+    false: Button_StartStop.Caption := 'Start';
+  end;
+end;
+
+procedure TMainForm.Edit_IntervalChange(Sender: TObject);
+begin
+  Timer_Game.Interval := Edit_Interval.Value;
+end;
+
+procedure TMainForm.Timer_GameTimer(Sender: TObject);
+begin
+
 end;
 
 end.

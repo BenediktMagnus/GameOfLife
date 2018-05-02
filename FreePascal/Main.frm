@@ -99,5 +99,70 @@ object MainForm: TMainForm
       OnClick = Button_SetClick
       TabOrder = 2
     end
+    object Button_StartStop: TButton
+      AnchorSideLeft.Control = Button_Set
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Button_Set
+      AnchorSideTop.Side = asrCenter
+      Left = 320
+      Height = 27
+      Top = 1
+      Width = 75
+      Align = alLeft
+      BorderSpacing.Left = 8
+      Caption = 'Start'
+      OnClick = Button_StartStopClick
+      TabOrder = 3
+    end
+    object Edit_Interval: TSpinEdit
+      AnchorSideLeft.Control = Label_Interval
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Label_Interval
+      AnchorSideTop.Side = asrCenter
+      Left = 480
+      Height = 27
+      Top = 1
+      Width = 68
+      Align = alLeft
+      Alignment = taRightJustify
+      BorderSpacing.Left = 4
+      MaxValue = 10000
+      MinValue = 10
+      OnChange = Edit_IntervalChange
+      TabOrder = 4
+      Value = 1000
+    end
+    object Label_Interval: TLabel
+      AnchorSideLeft.Control = Button_StartStop
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Button_StartStop
+      AnchorSideTop.Side = asrCenter
+      Left = 419
+      Height = 27
+      Top = 1
+      Width = 57
+      Align = alLeft
+      BorderSpacing.Left = 24
+      Caption = 'Interval:'
+      Layout = tlCenter
+      ParentColor = False
+    end
+    object Label_Interval_ms: TLabel
+      Left = 550
+      Height = 27
+      Top = 1
+      Width = 20
+      Align = alLeft
+      BorderSpacing.Left = 2
+      Caption = 'ms'
+      Layout = tlCenter
+      ParentColor = False
+    end
+  end
+  object Timer_Game: TTimer
+    Enabled = False
+    OnTimer = Timer_GameTimer
+    Left = 856
+    Top = 576
   end
 end
