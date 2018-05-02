@@ -6,6 +6,7 @@ object MainForm: TMainForm
   Caption = 'Game of Life'
   ClientHeight = 610
   ClientWidth = 893
+  OnCreate = FormCreate
   LCLVersion = '6.4'
   object PaintBox: TPaintBox
     Left = 0
@@ -13,6 +14,10 @@ object MainForm: TMainForm
     Top = 0
     Width = 893
     Align = alClient
+    Color = clBlack
+    ParentColor = False
+    OnMouseDown = PaintBoxMouseDown
+    OnPaint = PaintBoxPaint
   end
   object PanelConfig: TPanel
     Left = 0
@@ -28,14 +33,16 @@ object MainForm: TMainForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Label_X
       AnchorSideTop.Side = asrCenter
-      Left = 51
+      Left = 50
       Height = 27
       Top = 1
       Width = 55
       Align = alLeft
+      BorderSpacing.Left = 6
       MaxValue = 512
       MinValue = 1
-      TabOrder = 0
+      TabStop = False
+      TabOrder = 1
       Value = 16
     end
     object Edit_Y: TSpinEdit
@@ -43,35 +50,54 @@ object MainForm: TMainForm
       AnchorSideLeft.Side = asrBottom
       AnchorSideTop.Control = Edit_X
       AnchorSideTop.Side = asrCenter
-      Left = 176
+      Left = 174
       Height = 27
       Top = 1
       Width = 55
       Align = alLeft
+      BorderSpacing.Left = 6
       MaxValue = 512
       MinValue = 1
-      TabOrder = 1
+      TabStop = False
+      TabOrder = 0
       Value = 16
     end
     object Label_X: TLabel
-      Left = 1
+      Left = 3
       Height = 27
       Top = 1
-      Width = 50
+      Width = 41
       Align = alLeft
-      Caption = ' Rows:  '
+      BorderSpacing.Left = 2
+      Caption = 'Rows:'
       Layout = tlCenter
       ParentColor = False
     end
     object Label_Y: TLabel
-      Left = 106
+      Left = 113
       Height = 27
       Top = 1
-      Width = 70
+      Width = 55
       Align = alLeft
-      Caption = '   Colums:  '
+      BorderSpacing.Left = 8
+      Caption = 'Colums:'
       Layout = tlCenter
       ParentColor = False
+    end
+    object Button_Set: TButton
+      AnchorSideLeft.Control = Edit_Y
+      AnchorSideLeft.Side = asrBottom
+      AnchorSideTop.Control = Edit_Y
+      AnchorSideTop.Side = asrCenter
+      Left = 237
+      Height = 27
+      Top = 1
+      Width = 75
+      Align = alLeft
+      BorderSpacing.Left = 8
+      Caption = 'Set'
+      OnClick = Button_SetClick
+      TabOrder = 2
     end
   end
 end

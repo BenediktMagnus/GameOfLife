@@ -14,12 +14,14 @@ uses
 type
   { TMainForm }
   TMainForm = class(TForm)
+    Button_Set: TButton;
     PaintBox: TPaintBox;
     PanelConfig: TPanel;
     Edit_X: TSpinEdit;
     Edit_Y: TSpinEdit;
     Label_X: TLabel;
     Label_Y: TLabel;
+    procedure Button_SetClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   end;
 
@@ -44,5 +46,15 @@ begin
 
   Grid.SetSize(Rows, Cols);
 end;
+procedure TMainForm.Button_SetClick(Sender: TObject);
+begin
+  Rows := Edit_X.Value;
+  Cols := Edit_Y.Value;
+
+  Grid.SetSize(Rows, Cols);
+
+  PaintBox.Invalidate;
+end;
+
 end.
 
