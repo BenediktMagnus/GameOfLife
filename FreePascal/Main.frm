@@ -17,6 +17,8 @@ object MainForm: TMainForm
     Color = clBlack
     ParentColor = False
     OnMouseDown = PaintBoxMouseDown
+    OnMouseMove = PaintBoxMouseMove
+    OnMouseUp = PaintBoxMouseUp
     OnPaint = PaintBoxPaint
   end
   object PanelConfig: TPanel
@@ -130,7 +132,7 @@ object MainForm: TMainForm
       MinValue = 10
       OnChange = Edit_IntervalChange
       TabOrder = 4
-      Value = 1000
+      Value = 500
     end
     object Label_Interval: TLabel
       AnchorSideLeft.Control = Button_StartStop

@@ -14,6 +14,11 @@ uses
 type
   { TMainForm }
   TMainForm = class(TForm)
+    procedure PaintBoxMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
+  public
+    LastX, LastY: Int16;
+  published
     Button_StartStop: TButton;
     Button_Set: TButton;
     Label_Interval: TLabel;
@@ -30,7 +35,8 @@ type
     procedure Button_StartStopClick(Sender: TObject);
     procedure Edit_IntervalChange(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure PaintBoxMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure PaintBoxMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+    procedure PaintBoxMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure PaintBoxPaint(Sender: TObject);
     procedure Timer_GameTimer(Sender: TObject);
   end;
@@ -92,7 +98,27 @@ begin
   PosX := Floor(X / PaintBox.Width * Rows);
   PosY := Floor(Y / PaintBox.Height * Cols);
 
-  Grid.Field[PosX, PosY] := not Grid.Field[PosX, PosY];
+  if (PosX <> MainForm.LastX) or (PosY <> MainForm.LastY) then
+  begin
+    Grid.Field[PosX, PosY] := not Grid.Field[PosX, PosY];
+
+    MainForm.LastX := PosX;
+    MainForm.LastY := PosY;
+
+    PaintBox.Invalidate;
+  end;
+end;
+
+procedure TMainForm.PaintBoxMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer);
+begin
+  if ssLeft in Shift then
+    PaintBoxMouseDown(PaintBox, mbLeft, Shift, X, Y);
+end;
+
+procedure TMainForm.PaintBoxMouseUp(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+begin
+  MainForm.LastX := -1;
+  MainForm.LastY := -1;
 end;
 
 procedure TMainForm.Button_SetClick(Sender: TObject);
