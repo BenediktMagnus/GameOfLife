@@ -7,7 +7,7 @@ interface
 uses
   //System:
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, ExtCtrls, StdCtrls,
-  Spin;
+  Spin, Math,
   //Custom:
   UGrid;
 
@@ -23,6 +23,7 @@ type
     Label_Y: TLabel;
     procedure Button_SetClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure PaintBoxMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
     procedure PaintBoxPaint(Sender: TObject);
   end;
 
@@ -75,6 +76,17 @@ begin
       if Grid.Field[x, y] then
         PaintBox.Canvas.FillRect(EntryWidth * x, EntryHeight * y, EntryWidth * (x + 1) - 1, EntryHeight * (y + 1) - 1);
 end;
+
+procedure TMainForm.PaintBoxMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+var
+  PosX, PosY: UInt16;
+begin
+  PosX := Floor(X / PaintBox.Width * Rows);
+  PosY := Floor(Y / PaintBox.Height * Cols);
+
+  Grid.Field[PosX, PosY] := not Grid.Field[PosX, PosY];
+end;
+
 procedure TMainForm.Button_SetClick(Sender: TObject);
 begin
   Rows := Edit_X.Value;
