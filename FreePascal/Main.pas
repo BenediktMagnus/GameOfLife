@@ -122,7 +122,8 @@ end;
 
 procedure TMainForm.Timer_GameTimer(Sender: TObject);
 begin
-
+  Grid.Calculate;
+  PaintBox.Invalidate;
 end;
 
 end.
