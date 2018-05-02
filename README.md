@@ -1,2 +1,9 @@
-# GameOfLife
+# Game of Life
 Conway's Game of Life in different languages.
+
+Currently:
+FreePascal
+
+Planned:
+Javascript
+C#
