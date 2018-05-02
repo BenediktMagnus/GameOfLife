@@ -255,7 +255,7 @@
         <PackageName Value="adLCL"/>
       </Item1>
     </RequiredPackages>
-    <Units Count="2">
+    <Units Count="3">
       <Unit0>
         <Filename Value="GameOfLife.ppr"/>
         <IsPartOfProject Value="True"/>
@@ -266,6 +266,10 @@
         <ComponentName Value="MainForm"/>
         <ResourceBaseClass Value="Form"/>
       </Unit1>
+      <Unit2>
+        <Filename Value="UGrid.pas"/>
+        <IsPartOfProject Value="True"/>
+      </Unit2>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
