@@ -128,6 +128,7 @@ object MainForm: TMainForm
       Align = alLeft
       Alignment = taRightJustify
       BorderSpacing.Left = 4
+      Increment = 10
       MaxValue = 10000
       MinValue = 10
       OnChange = Edit_IntervalChange
